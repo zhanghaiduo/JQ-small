@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>滚动条置顶效果</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 2000px;
+        }
+        
+        #top {
+            width: 100px;
+            height: 50px;
+            background: red;
+            color: white;
+            font-size: 20px;
+            line-height: 50px;
+            text-align: center;
+            font-weight: bold;
+            position: fixed;
+            right: 0;
+            top: 300px;
+            border-radius: 5px;
+        }
+        
+        #bottom {
+            width: 100px;
+            height: 50px;
+            background: red;
+            color: white;
+            font-size: 20px;
+            line-height: 50px;
+            text-align: center;
+            font-weight: bold;
+            position: fixed;
+            right: 0;
+            top: 400px;
+            border-radius: 5px;
+        }
+        
+        #top:hover,
+        #bottom:hover {
+            background-color: royalblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top">
+        <span>向上</span>
+    </div>
+    <div id="bottom">
+        <span>向下</span>
+    </div>
+</body>
+
+</html>
+<script>
+    $(function() {
+        //1.解决兼容性的问题
+        /*function getScroll(){
+            return {
+                top:document.body.scrollTop ? document.body.scrollTop : document.documentElement.scrollTop,
+                left:document.body.scrollLeft ? document.body.scrollLeft : document.documentElement.scrollLeft
+
+            }
+        }*/
+
+        //2.在向上、向下上面挂载一个click事件
+        $('#top').click(function() {
+            //要将滚动条的值设置为0
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 400);
+        })
+        $('#bottom').click(function() {
+            //向下的情况呢？
+            var top = document.body.clientHeight;
+            $('html,body').animate({
+                scrollTop: top + 'px'
+            }, 400);
+        })
+
+
+    })
+</script>

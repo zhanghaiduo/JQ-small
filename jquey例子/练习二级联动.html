@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="">请选择省份</label>
+    <select name="" id="province">
+    </select>
+
+    <label for="">请选择城市</label>
+    <select name="" id="city">
+    
+    </select>
+</body>
+
+</html>
+<script>
+    var data = [{
+        name: "河南",
+        city: ['南阳', '郑州', "信阳", '安阳', "洛阳"]
+    }, {
+        name: "河北",
+        city: ["石家庄", "邯郸"]
+    }, {
+        name: "山西",
+        city: ["太原", "临汾", "大同"]
+    }]
+
+    var province = document.getElementById('province')
+    for (let i = 0; i < data.length; i++) {
+        var option = document.createElement('option')
+        province.appendChild(option)
+        option.innerHTML = data[i].name
+        option.value = i
+    }
+
+    var city = document.getElementById('city')
+
+    var henan = data[0].city
+        // console.log(henan.city)
+        // console.log(henan)
+    for (let j = 0; j < henan.length; j++) {
+
+        // console.log(henan)
+        var option2 = document.createElement('option')
+        city.appendChild(option2)
+        option2.innerHTML = henan[j]
+    }
+
+
+    province.onchange = function() {
+
+        // option.value = option2[index]
+        for (let a = 0; a < city.length; a++) {
+            city.removeChild(city[a])
+            a--
+        }
+        var index = this.value;
+        console.log(index)
+
+
+        for (let j = 0; j < data[index].city.length; j++) {
+
+            // console.log(henan)
+            var option3 = document.createElement('option')
+            city.appendChild(option3)
+            option3.innerHTML = data[index].city[j]
+        }
+    }
+</script>

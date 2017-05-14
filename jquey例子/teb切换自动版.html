@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>tab切换</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .menu {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            border-right: 1px solid #ccc;
+            text-align: center;
+        }
+        
+        .menu li {
+            float: left;
+            width: 100px;
+            border: 1px solid #ccc;
+            border-right: none;
+        }
+        
+        .main {
+            float: left;
+            clear: left;
+            /*margin-bottom: 20px;*/
+        }
+        
+        .menu .on {
+            border-top: 1px solid red;
+            border-bottom: 1px solid #fff;
+        }
+        
+        .tab {
+            height: 200px;
+            width: 401px;
+            border: 1px solid #ccc;
+            /*float: left;*/
+            border-top: none;
+            line-height: 200px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs">
+        <ul class="menu">
+            <li class="on">AAA</li>
+            <li>BBB</li>
+            <li>CCC</li>
+            <li>DDD</li>
+        </ul>
+        <div class="main">
+            <div class="tab" style="display: block;">AAA</div>
+            <div class="tab">BBB</div>
+            <div class="tab">CCC</div>
+            <div class="tab">DDD</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        var start = 0
+
+        function autoplay() {
+            var end = $('.menu li').length - 1;
+            if (start > end) {
+                start = 0;
+            }
+            $('.menu li').eq(start).addClass('on').siblings().removeClass('on')
+            $('.tab').eq(start).css('display', 'block').siblings().css('display', 'none')
+            start++;
+        }
+
+        setInterval(autoplay, 1000)
+    })
+</script>
